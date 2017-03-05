@@ -1,0 +1,31 @@
+{% extends "skeleton.html" %}
+
+{% block title %}{{ super() }}{% endblock %}
+
+{% block content %}
+    <h3><img src="static/to-do-list.jpg" width="300" height="90"></h3>
+    <dl>
+      {% for item in ToDoThings %}
+          {% if item.done %}
+              <dt class="done">
+                <span class="todo-name">{{ item.name }}</span>
+                  <div>
+                      <a href="/toggle/{{ item.id }}"><img src="static/todo.png" width="12" height="12"></a>
+                      <a href="/edit/{{ item.id }}"><img src="static/edit.png" width="12" height="12"></a>
+                      <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
+                  </div>
+
+              </dt>
+          {% else %}
+              <dt class = "toDo">
+                <span class="todo-name">{{ item.name }}</span>
+                  <div>
+                      <a href="/toggle/{{ item.id }}"><img src="static/done.png" width="12" height="12"></a>
+                      <a href="/edit/{{ item.id }}"><img src="static/edit.png" width="12" height="12"></a>
+                      <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
+                  </div>              </dt>
+          {% endif %}
+      {% endfor %}
+    </dl>
+    <a href="/add">Add new </a>
+{% endblock %}
