@@ -2,6 +2,7 @@ import sqlite3
 
 
 def create_table():
+    """Create initial table"""
     testing_tasks = [
                     (1, 'sgaga', 1),
                     (2, 'agagagaga', 1),
@@ -22,6 +23,7 @@ def create_table():
 
 
 def data_query(query, arguments):
+    """Execute query and return needed data"""
     conn = sqlite3.connect('todo.db')
     cur = conn.cursor()
     cur.execute(query, arguments)
@@ -29,6 +31,3 @@ def data_query(query, arguments):
     conn.commit()
     conn.close()
     return data
-
-
-create_table()
