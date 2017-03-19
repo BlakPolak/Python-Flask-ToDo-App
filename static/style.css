@@ -1,9 +1,31 @@
-body {
-    font-family: sans-serif;
-    font-size: 14px;
-    background-image: url("background.jpg");
-    background-position:center center;
+.firstBackground {
+
+    background-image: url("firstBackground.jpg");
+    background-attachment: fixed ;
     background-origin: content-box;
+    background-size:cover;
+}
+
+.secondBackground {
+    background-image: url("secondBackground.jpg");
+    background-attachment: fixed;
+    background-origin: content-box;
+    background-size:cover;
+}
+
+.firstFont {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.secondFont {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 22px;
+    font-variant: small-caps;
+}
+img#title {
+    width: 100%;
+    height: auto;
 }
 
 h3 {
@@ -82,3 +104,77 @@ input[type=submit]:hover {
     margin:auto;
     width: 30%;
 }
+
+.btn-group button {
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+button#changeBackground{
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    width: 49%;
+    text-align: center;
+    border: 1px solid #a5a5a5;
+    outline: none;
+    transition: 0.4s;
+}
+button#changeBackground.active, button#changeBackground:hover {
+    background-color: #ddd;
+}
+
+button#changeFont{
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    width: 49%;
+    text-align: center;
+    border: 1px solid #a5a5a5;
+    outline: none;
+    transition: 0.4s;
+}
+button#changeFont.active, button#changeFont:hover {
+    background-color: #ddd;
+}
+
+button.accordion {
+    background-color: #f7fffa;
+    color: #000000;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #a0a0a0;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: #fcfffa;
+    display: none;
+}
+.toggler {
+    width: 100%;
+    /*height: 200px;*/
+    position: relative;
+}
+.efectButton {
+    padding: .5em 1em;
+    text-decoration: none;
+}
+.effect {
+    padding: 0.4em;
+    position: relative;
+    background: #fff;
+}
+.effect h3 {
+    margin: 0;
+    padding: 0.4em;
+    text-align: center; }

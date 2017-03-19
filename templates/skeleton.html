@@ -4,10 +4,32 @@
     <meta charset="utf-8">
     <title>{% block title %}ToDoList{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+                $('#changeBackground').click(function() {
+                    return changeBackground();
+                });
+                $('#changeFont').click(function() {
+                    return changeFont();
+                });
+            });
+    </script>
   </head>
-  <body>
+
+  <body class="firstBackground" class="firstFont">
     <div class="content">
-    {% block content %}{% endblock %}
+    {% block content %}
+        {% block editButtons %}
+            <img id="title" src="static/to-do-list.jpg" width="300" height="90">
+            <div class ="btn-group" style="width:100%">
+                <button type="button" id="changeBackground" style='width: 50%'>Change Background</button>
+                <button type="button" id="changeFont" style='width: 50%'>Change Font</button>
+            </div>
+        {% endblock %}
+    {% endblock %}
     </div>
   </body>
+
 </html>

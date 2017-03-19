@@ -1,7 +1,6 @@
 {% extends "skeleton.html" %}
 
 {% block title %}{{ super() }}{% endblock %}
-
 {% block content %}
     <h3>UPDATE THING TO DO</h3>
     <form action="/edit/{{ item_id }}" method="POST">
