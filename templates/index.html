@@ -11,41 +11,36 @@
         {% for item in ToDoThings %}
           {% if item.done %}
                     <dt>
-                        <div class="done">
-                                <button class="accordion"><span class="todo-name">{{ item.name }}</span></button>
+                        <div class="done" >
+                                <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
                                 <div class="panel">
-                                    <p> Wrzucic item description item.description</p>
+                                    <a href="/toggle/{{ item.id }}"><img src="static/toDo.png" width="12" height="12"></a>
+                                    <a href="/edit/{{ item.id }}"><img src="static/edit.png"   width="12" height="12"></a>
+                                    <a href="/remove/{{ item.id }}"><img src="static/trash.png"  width="12" height="12"></a>
                                 </div>
                         </div>
                     </dt>
-                    <div>
-                      <a href="/toggle/{{ item.id }}"><img src="static/todo.png" width="12" height="12"></a>
-                      <a href="/edit/{{ item.id }}"><img src="static/edit.png"   width="12" height="12"></a>
-                      <a href="/remove/{{ item.id }}"><img src="static/trash.png"  width="12" height="12"></a>
-                    </div>
           {% else %}
                     <dt>
                         <div class="toDo" class="toggler">
-                            <div class = "effect">
-                                <button class="accordion"><span class="todo-name">{{ item.name }}</span></button>
+                            <div class = "effect" >
+                                <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
                                 <div class="panel">
-                                    <p> Wrzucic item description item.description</p>
+                                    <a href="/toggle/{{ item.id }}"><img src="static/done.png" width="12" height="12"></a>
+                                    <a href="/edit/{{ item.id }}"><img src="static/edit.png" width="12" height="12"></a>
+                                    <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
                                 </div>
                             </div>
                         </div>
                     </dt>
-                    <div>
-                      <a href="/toggle/{{ item.id }}"><img src="static/done.png" width="12" height="12"></a>
-                      <a href="/edit/{{ item.id }}"><img src="static/edit.png" width="12" height="12"></a>
-                      <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
-                    </div>
-
           {% endif %}
         {% endfor %}
             </br>
             <div>
-                <button class="efectButton">Edit</button>
-                <a href="/add">Add new </a>
+                <button class="efectButton" >Edit</button>
+                <button class="add, usual">Add</button>
+                <div class="thingToDo">
+                </div>
             </div>
 
         </div>
@@ -80,6 +75,11 @@
                     }, 1000 );
                   }
                   state = !state;
+                });
+            });
+            $(function() {
+                $( '.add, .usual' ).click(function() {
+                     return addThingToDo();
                 });
             });
         </script>

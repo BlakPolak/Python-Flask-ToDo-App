@@ -15,14 +15,20 @@ function changeBackground(){
 };
 
 function changeFont(){
-    if ($('body').hasClass('firstFont')) {
-            $('body').addClass('secondFont').removeClass('firstFont');
+    if ($('span').hasClass('firstFont')) {
+            $('span').addClass('secondFont').removeClass('firstFont');
         }
         else
         {
-            $('body').addClass('firstFont').removeClass('secondFont');
+            $('span').addClass('firstFont').removeClass('secondFont');
         }
 
 };
-// font-family: sans-serif;
-//     font-size: 14px;
+
+function addThingToDo(){
+    var newform= '<h3>ADD NEW THING TO DO</h3>'+
+        '<form action="/add" method="POST">'+
+        '<input type="text" name="name" id="name" placeholder="Thing to do" autofocus, required>' +
+        '<input type="submit" value="Add"> </form>';
+    $(".thingToDo").append(newform)
+}

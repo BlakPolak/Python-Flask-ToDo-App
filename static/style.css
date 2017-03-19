@@ -170,7 +170,6 @@ div.panel {
     text-decoration: none;
 }
 .effect {
-    padding: 0.4em;
     position: relative;
     background: #fff;
 }
@@ -178,3 +177,18 @@ div.panel {
     margin: 0;
     padding: 0.4em;
     text-align: center; }
+
+.usual{
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    width: 49%;
+    text-align: center;
+    border: 1px solid #a5a5a5;
+    outline: none;
+    transition: 0.4s;
+}
+.usual.active, .usual:hover {
+    background-color: #ddd;
+}
+
