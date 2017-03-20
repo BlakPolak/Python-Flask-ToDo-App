@@ -4,6 +4,7 @@
 
 
 function changeBackground(){
+    /**Function allows to change background image*/
     if ($('body').hasClass('firstBackground')) {
             $('body').addClass('secondBackground').removeClass('firstBackground');
         }
@@ -15,6 +16,7 @@ function changeBackground(){
 };
 
 function changeFont(){
+    /**Function allows to change font*/
     if ($('span').hasClass('firstFont')) {
             $('span').addClass('secondFont').removeClass('firstFont');
         }
@@ -26,6 +28,7 @@ function changeFont(){
 };
 
 function addThingToDo(){
+    /**Function allows to add new thing*/
     var newform= '<h3>ADD NEW THING TO DO</h3>'+
         '<form action="/add" method="POST">'+
         '<input type="text" name="name" id="name" placeholder="Thing to do" autofocus, required>' +
@@ -34,9 +37,10 @@ function addThingToDo(){
 }
 
 
-function editThingToDo(item_id){
+function editThingToDo(id){
+    /**Function allows to edit thing name (almost)*/
     var newform= '<h3>UPDATE THING TO DO</h3>'+
-                '<form action="/edit/{{ item_id }}" method="POST">'+
+                '<form action=("/edit/" + id) method="POST">'+
                 '<input type="text" name="update" id="name" placeholder="Edit name" autofocus, required>' +
                 '<input type="submit" value="Update">'+
                 '</form>';

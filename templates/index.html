@@ -16,7 +16,7 @@
                                 <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
                                 <div class="panel">
                                     <a href="/toggle/{{ item.id }}"><img src="static/toDo.png" width="12" height="12"></a>
-                                    <button class="edit" id="{{item.id}}"><img src="static/edit.png" width="12" height="12"></button>
+                                    <button class="edit" class="{{ item.id }}" onclick="edit_item()"><img src="static/edit.png" width="12" height="12"></button>
                                     <a href="/remove/{{ item.id }}"><img src="static/trash.png"  width="12" height="12"></a>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                     <div class="editThingToDo" id="{{ item.id }}">
                                     </div>
                                     <a href="/toggle/{{ item.id }}"><img src="static/done.png" width="12" height="12"></a>
-                                    <button class="edit" id="{{ item.id}}"><img src="static/edit.png" width="12" height="12"></button>
+                                    <button class="edit" class="{{ item.id }}" onclick="edit_item()"><img src="static/edit.png" width="12" height="12"></button>
                                     <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
                                 </div>
                         </div>
@@ -51,11 +51,11 @@
             var i;
             for (i = 0; i < acc.length; i++) {
                 acc[i].onclick = function(){
-                    /* Toggle between adding and removing the "active" class,
+                    /** Toggle between adding and removing the "active" class,
                     to highlight the button that controls the panel */
                     this.classList.toggle("active");
 
-                    /* Toggle between hiding and showing the active panel */
+                    /** Toggle between hiding and showing the active panel */
                     var panel = this.nextElementSibling;
                     if (panel.style.display === "block") {
                         panel.style.display = "none";
@@ -66,6 +66,7 @@
             }
             $( ".done" ).hide()
             $(function() {
+                /**Function shows and hide done tasks*/
                 var state = true;
                 $( ".effectButton").on( "click", function() {
                   if ( state ) {
@@ -78,16 +79,16 @@
             });
 
             $(function() {
+                /**Function allow to add new thing*/
                 $( '.add, .usual' ).click(function() {
                      return addThingToDo();
                 });
             });
-            $(function() {
-                var id = $('#id')
-                $( '.edit' ).click(function() {
-                     return editThingToDo();
-                });
-            });
+            function edit_item() {
+                /**Function allow to edit thing*/
+                var id = this.class;
+                return editThingToDo(id);
+                };
         </script>
     </dl>
 {% endblock %}
