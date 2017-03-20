@@ -11,34 +11,36 @@
         {% for item in ToDoThings %}
           {% if item.done %}
                     <dt>
-                        <div class="done" >
+                        <div class="done" class="toggler" >
+                            <div class = "effect" >
                                 <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
                                 <div class="panel">
                                     <a href="/toggle/{{ item.id }}"><img src="static/toDo.png" width="12" height="12"></a>
-                                    <a href="/edit/{{ item.id }}"><img src="static/edit.png"   width="12" height="12"></a>
+                                    <button class="edit" id="{{item.id}}"><img src="static/edit.png" width="12" height="12"></button>
                                     <a href="/remove/{{ item.id }}"><img src="static/trash.png"  width="12" height="12"></a>
                                 </div>
+                            </div>
                         </div>
                     </dt>
           {% else %}
                     <dt>
-                        <div class="toDo" class="toggler">
-                            <div class = "effect" >
+                        <div class="toDo" >
                                 <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
                                 <div class="panel">
+                                    <div class="editThingToDo" id="{{ item.id }}">
+                                    </div>
                                     <a href="/toggle/{{ item.id }}"><img src="static/done.png" width="12" height="12"></a>
-                                    <a href="/edit/{{ item.id }}"><img src="static/edit.png" width="12" height="12"></a>
+                                    <button class="edit" id="{{ item.id}}"><img src="static/edit.png" width="12" height="12"></button>
                                     <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
                                 </div>
-                            </div>
                         </div>
                     </dt>
           {% endif %}
         {% endfor %}
             </br>
             <div>
-                <button class="efectButton" >Edit</button>
-                <button class="add, usual">Add</button>
+                <button class="effectButton" >SHOW/HIDE DONE TASKS</button>
+                <button class="add, usual">ADD</button>
                 <div class="thingToDo">
                 </div>
             </div>
@@ -62,24 +64,28 @@
                     }
                 }
             }
+            $( ".done" ).hide()
             $(function() {
                 var state = true;
-                $( ".efectButton" ).on( "click", function() {
+                $( ".effectButton").on( "click", function() {
                   if ( state ) {
-                    $( ".effect" ).animate({
-                      width: '150%',
-                    }, 1000 );
+                    $( ".done" ).toggle();
                   } else {
-                    $( ".effect" ).animate({
-                      width: '100%',
-                    }, 1000 );
+                    $( ".done" ).toggle();
                   }
                   state = !state;
                 });
             });
+
             $(function() {
                 $( '.add, .usual' ).click(function() {
                      return addThingToDo();
+                });
+            });
+            $(function() {
+                var id = $('#id')
+                $( '.edit' ).click(function() {
+                     return editThingToDo();
                 });
             });
         </script>

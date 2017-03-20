@@ -32,3 +32,13 @@ function addThingToDo(){
         '<input type="submit" value="Add"> </form>';
     $(".thingToDo").append(newform)
 }
+
+
+function editThingToDo(item_id){
+    var newform= '<h3>UPDATE THING TO DO</h3>'+
+                '<form action="/edit/{{ item_id }}" method="POST">'+
+                '<input type="text" name="update" id="name" placeholder="Edit name" autofocus, required>' +
+                '<input type="submit" value="Update">'+
+                '</form>';
+    $('.editThingToDo').append(newform)
+}

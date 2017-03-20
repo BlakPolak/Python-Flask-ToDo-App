@@ -140,7 +140,7 @@ button#changeFont.active, button#changeFont:hover {
 }
 
 button.accordion {
-    background-color: #f7fffa;
+    background-color: #c8cbd6;
     color: #000000;
     cursor: pointer;
     padding: 18px;
@@ -194,3 +194,16 @@ div.panel {
     background-color: #ddd;
 }
 
+.effectButton {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    width: 49%;
+    text-align: center;
+    border: 1px solid #a5a5a5;
+    outline: none;
+    transition: 0.4s;
+}
+.effectButton.active, .effectButton:hover {
+    background-color: #ddd;
+}
