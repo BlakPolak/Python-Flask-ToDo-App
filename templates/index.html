@@ -13,10 +13,14 @@
                     <dt>
                         <div class="done" class="toggler" >
                             <div class = "effect" >
-                                <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
-                                <div class="panel">
+                                <button class="accordion"><span class="todo-name firstFont" >{{ item.name }}</span></button>
+                                <div class="panel {{ item.id }}">
+                                    <h3>UPDATE THING TO DO</h3>
+                                    <form action="/edit/{{ item.id }}" method="POST">
+                                        <input type="text" name="update" placeholder="Edit name" autofocus, required>
+                                        <input type="submit" value="Update">
+                                    </form>
                                     <a href="/toggle/{{ item.id }}"><img src="static/toDo.png" width="12" height="12"></a>
-                                    <button class="edit" class="{{ item.id }}" onclick="edit_item()"><img src="static/edit.png" width="12" height="12"></button>
                                     <a href="/remove/{{ item.id }}"><img src="static/trash.png"  width="12" height="12"></a>
                                 </div>
                             </div>
@@ -25,12 +29,14 @@
           {% else %}
                     <dt>
                         <div class="toDo" >
-                                <button class="accordion"><span class="todo-name" class="firstFont">{{ item.name }}</span></button>
-                                <div class="panel">
-                                    <div class="editThingToDo" id="{{ item.id }}">
-                                    </div>
+                                <button class="accordion"><span class="todo-name firstFont">{{ item.name }}</span></button>
+                                <div class="panel {{ item.id }}">
+                                    <h3>UPDATE THING TO DO</h3>
+                                    <form action="/edit/{{ item.id }}" method="POST">
+                                        <input type="text" name="update" placeholder="Edit name" autofocus, required>
+                                        <input type="submit" value="Update">
+                                    </form>
                                     <a href="/toggle/{{ item.id }}"><img src="static/done.png" width="12" height="12"></a>
-                                    <button class="edit" class="{{ item.id }}" onclick="edit_item()"><img src="static/edit.png" width="12" height="12"></button>
                                     <a href="/remove/{{ item.id }}"><img src="static/trash.png" width="12" height="12"></a>
                                 </div>
                         </div>
@@ -40,7 +46,7 @@
             </br>
             <div>
                 <button class="effectButton" >SHOW/HIDE DONE TASKS</button>
-                <button class="add, usual">ADD</button>
+                <button class="add usual">ADD</button>
                 <div class="thingToDo">
                 </div>
             </div>
@@ -84,11 +90,6 @@
                      return addThingToDo();
                 });
             });
-            function edit_item() {
-                /**Function allow to edit thing*/
-                var id = this.class;
-                return editThingToDo(id);
-                };
         </script>
     </dl>
 {% endblock %}

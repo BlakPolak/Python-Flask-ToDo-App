@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, url_for, redirect
 import database
 from models.todo import Todo
+from flask_jsglue import JSGlue
 
 app = Flask(__name__)
+jsglue = JSGlue(app)
 database.create_table()
 
 @app.route("/")
