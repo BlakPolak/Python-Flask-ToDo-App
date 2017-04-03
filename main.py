@@ -1,17 +1,55 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, session, flash, g
 import database
+from models.user import User
 from models.todo import Todo
 from flask_jsglue import JSGlue
+import os
 
 app = Flask(__name__)
 jsglue = JSGlue(app)
-database.create_table()
+app.secret_key = os.urandom(24)
+database.create_table_items()
+database.create_table_user()
+
+@app.before_request
+def before_request():
+    """ Check if session for user is still up, assign current user object to global g
+    """
+    g.logged_user = None
+    if 'login' in session:
+        g.logged_user = session['login']
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """ Shows login form if method was GET. Log user if method was POST.
+    """
+    if request.method == "POST":
+        logged_user = User.get_user(request.form["login"], request.form["password"])
+        if logged_user:
+            session["login"] = logged_user.login
+            flash('You were successfully logged in', "alert alert-success text-centered")
+            return redirect(url_for("list"))
+        else:
+            flash("Your login data was incorrect", "alert alert-danger text-centered")
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    """ Log out current user
+    """
+    session.pop("login", None)
+    flash("Logged out successfully", "alert alert-success text-centered")
+    return redirect(url_for("login"))
 
 @app.route("/")
+@app.route("/index", methods=['GET', 'POST'])
 def list():
     """ Shows list of todo items stored in the database.
     """
-    return render_template('index.html', ToDoThings=Todo.get_all())
+    if g.logged_user is not None:
+        return render_template('index.html', ToDoThings=Todo.get_all())
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/add", methods=['GET', 'POST'])
